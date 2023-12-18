@@ -1,0 +1,10 @@
+version: "1.0"
+
+services:
+  clouds:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cicd_clouds
+    restart: no
+    command: sh -c "python main.py"
