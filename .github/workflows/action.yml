@@ -1,0 +1,29 @@
+name: Build and Run Docker Compose
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Build Docker Compose
+      run: docker-compose up --build -d
+
+    - name: Save Docker Image
+      run: |
+        docker save -o my_image.tar cicd_clouds
+        mv my_image.tar $GITHUB_WORKSPACE/my_image.tar
+        echo "::set-output name=image_path::$GITHUB_WORKSPACE/my_image.tar"
+
+    - name: Upload Docker Image Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my_image
+        path: ${{ env.image_path }}
