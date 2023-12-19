@@ -14,16 +14,16 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build Docker Compose
-      run: docker-compose up --build
+      run: docker-compose build
 
     - name: Save Docker Image
       run: |
-        docker save -o my_image.tar cicd_clouds
-        mv my_image.tar $GITHUB_WORKSPACE/my_image.tar
-        echo "::set-output name=image_path::$GITHUB_WORKSPACE/my_image.tar"
+        docker save -o cicd_clouds.tar cicd_clouds
+        mv cicd_clouds.tar $GITHUB_WORKSPACE/cicd_clouds.tar
+        echo "::set-output name=image_path::$GITHUB_WORKSPACE/cicd_clouds.tar"
 
     - name: Upload Docker Image Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my_image
+        name: cicd_clouds
         path: ${{ env.image_path }}
