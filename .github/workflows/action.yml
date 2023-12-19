@@ -19,7 +19,7 @@ jobs:
     - name: Save Docker Image
       run: |
         docker save -o cicd_clouds.tar devops3_clouds
-        mv cicd_clouds.tar $GITHUB_WORKSPACE/cicd_clouds.tar
+        mv cicd_clouds.tar $GITHUB_WORKSPACE/
         echo "::set-output name=image_path::$GITHUB_WORKSPACE/cicd_clouds.tar"
 
     - name: Upload Docker Image Artifact
