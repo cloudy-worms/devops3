@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: cicd_clouds
-        path: /home/runner/work/devops3/devops3/cicd_clouds.tar
+        path: cicd_clouds.tar
